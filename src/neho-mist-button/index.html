@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    :root {
+      --bg: hsl(300, 91%, 50%);
+      --text: hsl(0, 0%, 100%);
+    }
+
+    body{
+      background: hsl(0, 0%, 7%);
+    }
+    button {
+      position: relative;
+      cursor: pointer;
+      padding: 0.5em 1em;
+      color: var(--text);
+      background: var(--bg);
+      border-radius: 0.5em;
+      border: 1px solid currentColor;
+      text-shadow:
+      0 0 1em  white,
+      0 0 1em  var(--bg);
+      box-shadow: 0 0 1em 0.1em var(--bg);
+      transition: 300ms ease-in;
+      transition-property: box-shadow background-color;
+    }
+
+    button:hover {
+      color: var(--bg);
+      background: var(--text);
+      box-shadow: 0 0 2em 0.1em var(--bg);
+    }
+
+
+    button::after{
+      pointer-events: none;
+      content: "";
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: var(--bg);
+      translate: 0 calc(100% + 3em);
+      transform: perspective(10em) rotateX(45deg) scale(2);
+      filter: blur(3em);
+    }
+
+    button:hover::after {
+      filter:blur(3.2em);
+    }
+  </style>
+</head>
+<body>
+  <button>Neho</button>
+</body>
+</html>

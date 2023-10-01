@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Stack</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="./main.js"></script>
+    <style>
+      @layer demo {
+        body {
+          --scalar: 5;
+          --card-size: 200px;
+          width: 100vw;
+          height: 100vh;
+          background: #131517;
+          color: hsl(206, 4%, 69%);
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          align-items: center;
+          font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          padding: 1rem;
+          gap: 2rem;
+        }
+
+        input + label {
+          margin-left: 0.5rem;
+        }
+
+        form {
+          display: grid;
+          gap: 2rem;
+          /* base on contens  */
+          justify-items: start;
+        }
+
+        fieldset {
+          padding: 1rem;
+        }
+
+        :has(#center:checked) .card-stack > .card {
+          --transform-origin: center;
+        }
+
+        :has(#top-center:checked) .card-stack > .card {
+          --transform-origin: top center;
+        }
+
+        :has(#bottom:checked) .card-stack > .card {
+          --transform-origin: bottom center;
+        }
+
+        :has(#bottom-left:checked) .card-stack > .card {
+          --transform-origin: bottom left;
+        }
+
+        :has(#bottom-right:checked) .card-stack > .card {
+          --transform-origin: bottom right;
+        }
+
+        :has(#top-left:checked) .card-stack > .card {
+          --transform-origin: top left;
+        }
+
+        :has(#top-right:checked) .card-stack > .card {
+          --transform-origin: top right;
+        }
+
+        :has(#custom-1:checked) .card-stack > .card {
+          --transform-origin: center 200%;
+        }
+
+        :has(#custom-2:checked) .card-stack > .card {
+          --transform-origin: -25% -25%;
+        }
+
+        .card-1 {
+          --r: calc(var(--scalar, 5) * 2 * 1deg * -1);
+          background-color: #026E81;
+        }
+
+        .card-2 {
+          --r: calc(var(--scalar) * 2 * 1deg);
+          background-color: #00ABBD;
+        }
+
+        .card-3 {
+          --r: calc(var(--scalar) * 1deg * -1);
+          background-color: #0099DD;
+        }
+
+        .card-4 {
+          --r: calc(var(--scalar) * 1deg);
+          background-color: #FF9933;
+        }
+
+        .card-5 {
+          --r: 0;
+          background-color: #A1C7E0;
+        }
+
+        .card-stack {
+          display: grid;
+          justify-self: start;
+          grid: [start] 1fr / [center] minmax(50vmin, 40ch) [end];
+        }
+
+        .card {
+          grid-area: 1 / 1 / 2 / 2;
+        }
+
+        .card {
+          width: var(--card-size);
+          aspect-ratio: 2 / 2.5;
+          transform: rotate(var(--r)) translateY(var(--t, 0px));
+          transform-origin: var(--transform-origin, bottom center);
+          transition: transform 300ms;
+          border-radius: 1em;
+          cursor: pointer;
+          box-shadow: 0 0 0.2em 0em rgb(74, 70, 70);
+        }
+
+        .card:hover {
+          --t: -20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>Transform Origin</legend>
+        <input type="radio" name="transform-origin" id="origin-center" value="center" />
+        <label for="origin-center">center</label>
+        <br />
+        <input type="radio" name="transform-origin" id="top-center" value="top center" />
+        <label for="radio-top">top</label>
+        <br />
+        <input type="radio" name="transform-origin" id="bottom-center" value="bottom center" checked />
+        <label for="radio-bottom">bottom center</label>
+        <br />
+        <input type="radio" name="transform-origin" id="bottom-left" value="bottom left" />
+        <label for="radio-bottom-left">bottom left</label>
+        <br />
+
+        <input type="radio" name="transform-origin" id="bottom-right" value="bottom right" />
+        <label for="radio-bottom-right">bottom right</label>
+        <br />
+
+        <input type="radio" name="transform-origin" id="top-left" value="top left" />
+        <label for="radio-top-left">top left</label>
+        <br />
+
+        <input type="radio" name="transform-origin" id="top-right" value="top right" />
+        <label for="radio-top-right">top right</label>
+        <br />
+      </fieldset>
+
+      <fieldset>
+        <legend>Custom</legend>
+        <input type="radio"  value="200%" name="transform-origin" id="custom-1" />
+        <label for="custom-1">center 200%</label>
+        <br />
+
+        <input type="radio" id="custom-2" name="transform-origin" value="-25% -25%" />
+        <label for="custom-2">-25% -25%</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gap</legend>
+        <input type="range" id="scalar" value="10" max="100" />
+      </fieldset>
+    </form>
+
+    <div class="card-stack" style="--scalar: 10">
+      <div class="card card-1"></div>
+      <div class="card card-2"></div>
+      <div class="card card-3"></div>
+      <div class="card card-4"></div>
+      <div class="card card-5"></div>
+    </div>
+  </body>
+</html>
