@@ -74,27 +74,27 @@
           --transform-origin: -25% -25%;
         }
 
-        .card-1 {
+        .card:nth-of-type(1) {
           --r: calc(var(--scalar, 5) * 2 * 1deg * -1);
           background-color: #026E81;
         }
 
-        .card-2 {
+        .card:nth-of-type(2) {
           --r: calc(var(--scalar) * 2 * 1deg);
           background-color: #00ABBD;
         }
 
-        .card-3 {
+        .card:nth-of-type(3) {
           --r: calc(var(--scalar) * 1deg * -1);
           background-color: #0099DD;
         }
 
-        .card-4 {
+        .card:nth-of-type(4) {
           --r: calc(var(--scalar) * 1deg);
           background-color: #FF9933;
         }
 
-        .card-5 {
+        .card:nth-of-type(5) {
           --r: 0;
           background-color: #A1C7E0;
         }
@@ -102,7 +102,7 @@
         .card-stack {
           display: grid;
           justify-self: start;
-          grid: [start] 1fr / [center] minmax(50vmin, 40ch) [end];
+          grid: [row-start] 1fr [row-end]/ [column-start] minmax(50vmin, 40ch) [column-end];
         }
 
         .card {
@@ -172,12 +172,12 @@
       </fieldset>
     </form>
 
-    <div class="card-stack" style="--scalar: 10">
-      <div class="card card-1"></div>
-      <div class="card card-2"></div>
-      <div class="card card-3"></div>
-      <div class="card card-4"></div>
-      <div class="card card-5"></div>
+    <div class="card-stack" style="--scalar: 10;">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
     </div>
   </body>
 </html>
