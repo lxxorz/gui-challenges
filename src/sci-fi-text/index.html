@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCI-FI TEXT</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    @layer demo {
+      body {
+        background: hsl(0, 4%, 10%);
+        color: hsl(188, 80%, 56%);
+        padding: 2rem;
+        min-block-size: 300vh;
+      }
+
+      @keyframes sci-fi {
+        from {
+          transform: rotateX(30deg) translateY(100vh);
+        }
+        to {
+          transform: rotateX(30deg) translateY(-500vh);
+        }
+      }
+
+      .cover-view-port {
+        display: grid;
+        place-content: center;
+      }
+
+      article {
+        width: 60ch;
+        font-size: 16px;
+      }
+
+
+      @supports (animation-timeline: scroll(root)) {
+        .cover-view-port {
+          position: fixed;
+          inset: 0;
+          perspective: 50vh;
+        }
+
+        article {
+          transform: perspective(50vh);
+          animation: sci-fi 1s linear forwards;
+          animation-timeline: scroll(root);
+        }
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="cover-view-port">
+    <article>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus harum, quod reiciendis deleniti iste quia odio pariatur vitae praesentium porro perspiciatis inventore recusandae. Sint eius reprehenderit culpa voluptatum assumenda adipisci?
+      </p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos nihil illo quod necessitatibus expedita. Similique magni, accusantium esse, quam recusandae libero repellendus eveniet laborum facilis nulla obcaecati necessitatibus repellat aliquam.</p>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, rem! Iusto nam earum error vel deserunt animi, expedita totam molestiae necessitatibus. Excepturi et harum, a quo iste suscipit eligendi dolorem.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, magni necessitatibus commodi nostrum reprehenderit vero impedit accusamus ratione quae obcaecati, provident nam? Neque voluptatum obcaecati molestias doloremque labore voluptas sapiente.</p>
+    </article>
+  </div>
+</body>
+</html>
