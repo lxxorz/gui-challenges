@@ -1,0 +1,98 @@
+:root {
+  --color-primary: #1a73e8;
+  --color-white: #fff;
+  --alignment: left;
+  --box-shadow-1: 0 0 0.2em 0 hsl(0, 1%, 27%);
+  --box-shadow-2: 0 0 0.5em 0 hsl(0, 1%, 27%);
+  --radius: 0.5em;
+}
+
+body {
+  display: grid;
+  place-content: center;
+  grid-template-columns: minmax(min(100% - 2rem, 40ch), 60ch);
+  row-gap: 2rem;
+  justify-items: flex-start;
+
+}
+
+
+#switch-group {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  border: none;
+  gap: 1rem;
+  background: hsl(0, 6%, 15%);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow-1);
+  transition: box-shadow 0.5s ease-in-out;
+  color: var(--color-white);
+  font-size: 20px;
+
+  &:is(:focus-within, :hover) {
+    box-shadow: var(--box-shadow-2);
+  }
+
+  &>legend {
+    display: none;
+  }
+
+
+}
+
+.group-switch {
+  display: grid;
+  place-items: center;
+  inline-size: 1.5rem;
+  padding: 0.3rem;
+  box-sizing: content-box;
+
+  & > :is(input, label, svg) {
+    grid-area: 1 / 1;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  & :is(input, label) {
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:has(input:checked) {
+    color: var(--color-primary);
+  }
+
+  & input+label {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background: hsl(0, 1%, 37%);
+    border-radius: calc(var(--radius) * 0.5);
+  }
+}
+
+:has(#left:checked) article {
+  --alignment: left;
+}
+
+:has(#center:checked) article {
+  --alignment: center;
+}
+
+:has(#right:checked) article {
+  --alignment: right;
+}
+
+:has(#justify:checked) article {
+  --alignment: justify;
+}
+
+article {
+  & p {
+    text-align: var(--alignment);
+  }
+}
