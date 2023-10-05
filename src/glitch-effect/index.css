@@ -1,0 +1,122 @@
+@layer global, demo;
+
+@import url(/style.css) layer(global);
+
+@font-face {
+  font-family: "Cyberpunk";
+  src: url('./Cyberpunk-Regular.ttf') format('woff2');
+}
+
+:root {
+  --color-primary: #ff1493;
+  --duration: 4s;
+}
+
+
+
+@layer demo {
+  @layer support {
+    body {
+      background-color: black;
+      overflow: hidden;
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      padding: 2rem 10rem;
+    }
+
+    h1 {
+      font-family: Cyberpunk;
+      font-synthesis: none;
+      font-size: 13vw;
+      letter-spacing: -.3em;
+      color: deeppink;
+
+      &:focus-visible {
+        outline-color: hsl(0, 26%, 95%);
+      }
+
+      &:not(:active):focus{
+        outline-offset: 5px;
+      }
+
+      &:focus-visible {
+        transition: outline-offset 0.2s ease-in-out;
+      }
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      align-self: flex-start;
+      border-radius: 0.5rem;
+      background: hsl(0, 7%, 84%);
+      border: 1px solid hsl(0, 1%, 39%);
+      cursor: pointer;
+      &:hover {
+        background: hsl(0, 7%, 74%);
+      }
+
+      &:active {
+        background: hsl(0, 7%, 64%);
+      }
+    }
+
+    pre {
+      font-size: 1rem;
+      color: white;
+      background-color: black;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem;
+      overflow: auto;
+      max-width: 100%;
+      border: 1px solid white;
+    }
+  }
+
+
+  h1 {
+    animation: cyberpunk-glitch var(--duration) step-end infinite,
+      skew-glitch var(--duration) step-end infinite;
+  }
+
+  @keyframes cyberpunk-glitch {
+    0% {clip-path: polygon(10% 65% ,46% 42% ,33% 35% ,68% 51% ,89% 16% ,65% 16% ,87% 96% ,75% 27% ,28% 98% ,55% 88% ,10% 8% ,75% 81% ,15% 77% ,19% 43% ,94% 96% ,44% 57% ,8% 63% ,24% 33% ,53% 31% ,31% 20% ,9% 99% ,63% 81% ,58% 26% ,100% 50% ,25% 10% );}
+    4% {clip-path: polygon(95% 4% ,98% 91% ,83% 25% ,100% 86% ,87% 86% ,95% 94% ,55% 38% ,79% 7% ,7% 76% ,30% 26% ,64% 42% ,72% 6% ,29% 85% ,83% 49% ,10% 0% ,21% 48% ,95% 91% ,21% 85% ,35% 38% ,26% 73% ,50% 33% ,30% 21% ,23% 58% ,20% 30% ,51% 10% );}
+    24% {clip-path: polygon(31% 16% ,36% 51% ,27% 99% ,75% 49% ,72% 93% ,76% 69% ,48% 38% ,11% 23% ,42% 77% ,88% 69% ,14% 72% ,8% 85% ,90% 48% ,48% 92% ,92% 19% ,4% 48% ,64% 24% ,46% 48% ,93% 23% ,1% 13% ,60% 58% ,11% 60% ,78% 48% ,47% 86% ,63% 52% );}
+    66% {clip-path: polygon(2% 1% ,50% 67% ,18% 80% ,62% 27% ,70% 47% ,21% 0% ,56% 7% ,74% 81% ,94% 48% ,80% 78% ,76% 27% ,50% 4% ,58% 61% ,29% 67% ,8% 94% ,2% 45% ,18% 86% ,36% 38% ,13% 52% ,98% 86% ,2% 27% ,87% 47% ,81% 32% ,59% 48% ,56% 42% );}
+    80% {clip-path: polygon(74% 44% ,69% 26% ,23% 94% ,14% 90% ,89% 40% ,53% 63% ,19% 16% ,38% 55% ,70% 14% ,62% 73% ,16% 64% ,48% 48% ,80% 11% ,16% 82% ,13% 41% ,29% 84% ,79% 0% ,26% 75% ,79% 64% ,100% 77% ,24% 35% ,89% 6% ,35% 36% ,68% 24% ,55% 85% );}
+    92% {clip-path: polygon(5% 91% ,76% 48% ,13% 28% ,76% 62% ,68% 98% ,37% 96% ,9% 33% ,58% 20% ,13% 34% ,52% 32% ,3% 14% ,56% 16% ,79% 88% ,61% 4% ,67% 51% ,5% 10% ,46% 73% ,43% 54% ,50% 89% ,27% 72% ,71% 55% ,11% 8% ,90% 23% ,54% 20% ,14% 93% );}
+
+    1%, 5%, 25%, 80%, 94% {
+      clip-path: none;
+    }
+  }
+
+  @keyframes skew-glitch {
+    0% {
+      transform: skew(83deg, 2deg) scaleY(.25)
+    }
+
+    27% {
+      transform: skew(-83deg, 2deg) scaleY(.25)
+    }
+
+    66% {
+      transform: skew(93deg, -2deg) scaleY(.25)
+    }
+
+    91% {
+      transform: skew(-89deg, -2deg) scaleY(.25)
+    }
+
+    1%,
+    28%,
+    67%,
+    92% {
+      transform: none
+    }
+  }
+
+}
